@@ -1,0 +1,1 @@
+ffmpeg -i INPUT.mp4 -i IMAGE  -filter_complex "[0:v][1:v]overlay=x='if(lte(0,0),w+(t)*10,0)':y=100[out]" -map '[out]' -y OUTPUT.mp4
