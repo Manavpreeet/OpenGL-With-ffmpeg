@@ -1,0 +1,14 @@
+If you have not installed ffmpeg in your system use - "sudo apt install ffmpeg"
+
+
+ffmpeg -i INPUT.mp4 -i IMAGE  -filter_complex "[0:v][1:v]overlay=x='if(lte(0,0),w+(t)*10,0)':y=100[out]" -map '[out]' -y OUTPUT.mp4
+
+-i INPUT.mp4      = Input video name with extension
+
+-i IMAGE          = Input image with extension
+
+-filter_complex   = https://www.ffmpeg.org/ffmpeg.html#Complex-filtergraphs
+
+[0:v][1:v]overlay = Here [0:v] refers to the first video stream in the first input file, which is linked to the first (main) input of the overlay filter. Similarly the first video stream in the second input is linked to the second                      (overlay) input of overlay.
+
+x='if(lte(0,0),w+(t)*10,0)':y=100[out] = Keeps changing the postion of image in x-axis keeping y-axis constant. Hence animating it throught the width ("w") of windows with respect to change of time ("t").
